@@ -1,0 +1,213 @@
+/* ========== GLOBAL RESET ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f5f5f5;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #2a7abe;
+    padding: 20px;
+    position: fixed;
+    transition: 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 22px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+}
+
+.user-info {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.user-info p {
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.staff-badge {
+    background: #4CAF50;
+    color: #ffffff;
+}
+
+.sidebar .menu {
+    list-style: none;
+}
+
+.sidebar .menu li {
+    color: #b9c5c8;
+    padding: 12px 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar .menu li a {
+    width: 100%;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.sidebar .menu li:hover,
+.sidebar .menu li.active {
+    background: #1e5a8a;
+    color: #ffffff;
+}
+
+.sidebar.collapsed {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* ========== MAIN CONTENT ========== */
+.main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    transition: 0.3s ease;
+    min-height: 100vh;
+}
+
+.sidebar.collapsed + .main {
+    margin-left: 0;
+    width: 100%;
+}
+
+/* ========== TOPBAR ========== */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-btn {
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.logout-btn {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ========== CONTENT ========== */
+.content {
+    padding: 20px;
+}
+
+/* ========== DASHBOARD CARDS ========== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Blue */
+.card-blue {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+}
+
+/* Green */
+.card-green {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+/* Red */
+.card-red {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+/* Yellow */
+.card-yellow {
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+}
+
+.card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+.logo-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 15px;
+}
+
+.sidebar-logo {
+    width: 200px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 15px;
+    font-weight: 700;
+    color: white;  /* adjust if your sidebar text color is different */
+}
