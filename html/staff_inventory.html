@@ -51,7 +51,9 @@
             <section class="section-block">
                 <div class="section-header">
                     <h2>Inventory Management</h2>
-                    <span class="section-subtitle">View only — contact admin for changes</span>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" onclick="addItem()"><i class="fa-solid fa-plus"></i> Add Item</button>
+                    </div>
                 </div>
 
                 <div class="search-filter-bar">
@@ -127,6 +129,11 @@
                 const badge = r.querySelector('.status-badge');
                 r.style.display = badge && badge.textContent.toLowerCase().includes(status) ? '' : 'none';
             }
+        }
+
+        function addItem() {
+            alert('Add Item functionality goes here!');
+            // You can later replace this with a modal or redirect to Add Item page
         }
     </script>
 </body>
