@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Transaction Records · P & A Lab (Staff)</title>
-    <link rel="stylesheet" href="../css/admin_dashboard.css" />
+    <title>Transaction Management · P & A Lab (Staff)</title>
+    <link rel="stylesheet" href="../css/dashboard.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -23,7 +23,7 @@
 
             <a href="staff_test_requests.html" class="nav-item">
                 <span class="nav-icon"><i class="fa-solid fa-vial"></i></span>
-                <span>Test Requests</span>
+                <span>Patient Test</span>
             </a>
 
             <a href="staff_lab_results.html" class="nav-item">
@@ -37,7 +37,7 @@
             </a>
 
             <a href="staff_transactions.html" class="nav-item active">
-                <span class="nav-icon"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                <span class="nav-icon"><i class="fa-solid fa-receipt"></i></span>
                 <span>Transactions</span>
             </a>
         </nav>
@@ -48,89 +48,90 @@
     </aside>
 
     <main class="main">
+
+        <!-- ✅ UPDATED TOP BAR -->
         <header class="topbar">
-            <div>
-                <p class="eyebrow">P & A Lab</p>
-                <h1>Transaction Records</h1>
+            <div class="topbar-left">
+                <p class="eyebrow">P & A LAB</p>
+                <h1>Transaction Management</h1>
             </div>
+
         </header>
 
         <div class="content">
+
+            <div class="stats-grid stats-grid-large">
+                <div class="stat-card">
+                    <h4>Total Transactions</h4>
+                    <p id="totalTxn" class="stat-value-normal">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h4><i class="fa-solid fa-arrow-down" style="color: green;"></i> Stock In Value</h4>
+                    <p id="stockIn" class="stat-value-green">₱0.00</p>
+                </div>
+
+                <div class="stat-card">
+                    <h4><i class="fa-solid fa-arrow-up" style="color: red;"></i> Stock Out Value</h4>
+                    <p id="stockOut" class="stat-value-red">₱0.00</p>
+                </div>
+
+                <div class="stat-card">
+                    <h4><i class="fa-solid fa-shuffle" style="color: #2a7abe;"></i> Net Movement</h4>
+                    <p id="netMovement" class="stat-value-normal">₱0.00</p>
+                </div>
+            </div>
+
+            <div class="transaction-controls-bar">
+                <input id="txnSearch" type="text" class="search-box" placeholder="Search by item, SKU, or transaction ID..." onkeyup="filterTransactions(this.value)" />
+
+                <select id="txnType" class="filter-input-small" onchange="filterByType(this.value)">
+                    <option value="">All Types</option>
+                    <option value="test">Test Payment</option>
+                    <option value="supply">Supply Purchase</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <select id="txnTime" class="filter-input-small">
+                    <option value="">All Time</option>
+                    <option value="today">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+
+                <button class="export-btn">
+                    <i class="fa-solid fa-file-export"></i> Export
+                </button>
+            </div>
+
             <section class="section-block">
-                <div class="section-header">
-                    <h2><i class="fa-solid fa-file-invoice-dollar"></i> Transaction Records</h2>
-
-                    <!-- Removed EXPORT button for staff -->
-                </div>
-
-                <div class="search-filter-bar">
-                    <input id="txnSearch" type="text" class="search-box" placeholder="Search transactions..." onkeyup="filterTransactions(this.value)" />
-                    <input id="txnDate" type="date" class="filter-select" onchange="filterByDate(this.value)" />
-                    <select id="txnType" class="filter-select" onchange="filterByType(this.value)">
-                        <option value="">All Types</option>
-                        <option value="test">Test Payment</option>
-                        <option value="supply">Supply Purchase</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h4>Today's Transactions</h4>
-                        <p id="txnToday">0</p>
-                    </div>
-                    <div class="stat-card">
-                        <h4>This Week</h4>
-                        <p id="txnWeek">0</p>
-                    </div>
-                    <div class="stat-card">
-                        <h4>Total Revenue (Today)</h4>
-                        <p id="txnRev">₱0</p>
-                    </div>
-                </div>
-
+                <h2>Transaction History</h2>
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Transaction ID</th>
-                                <th>Date & Time</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th style="width: 15%;">TRANSACTION ID</th>
+                                <th style="width: 20%;">DATE & TIME</th>
+                                <th style="width: 10%;">TYPE</th>
+                                <th style="width: 25%;">ITEM DETAILS</th>
+                                <th style="width: 10%;">QUANTITY</th>
+                                <th style="width: 10%;">AMOUNT</th>
+                                <th style="width: 10%;">PERFORMED BY</th>
+                                <th style="width: 5%;">ACTIONS</th>
                             </tr>
                         </thead>
 
                         <tbody id="transactionsTable">
                             <tr>
-                                <td>TX-001</td>
-                                <td>2025-01-15 10:24 AM</td>
-                                <td>Supply Purchase</td>
-                                <td>Test Tubes (Box of 50)</td>
-                                <td>₱250</td>
-                                <td>Completed</td>
-                                <td class="action-buttons">
-                                    <!-- STAFF CAN ONLY VIEW -->
-                                    <button class="btn-icon view-btn">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </button>
-
-                                    <!-- EDIT + DELETE REMOVED -->
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td colspan="7" class="empty-state-cell">
+                                <td colspan="8" class="empty-state-cell no-transactions-found">
                                     <i class="fa-solid fa-circle-exclamation"></i> No transactions found
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
             </section>
+
         </div>
     </main>
 
@@ -141,38 +142,26 @@
 
         function filterTransactions(q) {
             q = q.trim().toLowerCase();
-            const t = document.getElementById('transactionsTable');
-            const rows = t.getElementsByTagName('tr');
-            for (let r of rows) {
+            const rows = document.querySelectorAll('#transactionsTable tr');
+            rows.forEach(r => {
+                if (r.querySelector('.empty-state-cell')) return;
                 const text = r.textContent.toLowerCase();
                 r.style.display = text.includes(q) ? '' : 'none';
-            }
-        }
-
-        function filterByDate(date) {
-            const t = document.getElementById('transactionsTable');
-            const rows = t.getElementsByTagName('tr');
-            for (let r of rows) {
-                if (!date) {
-                    r.style.display = '';
-                    continue;
-                }
-                const cell = r.cells[1];
-                r.style.display = cell && cell.textContent.split(' ')[0] === date ? '' : 'none';
-            }
+            });
         }
 
         function filterByType(type) {
-            const t = document.getElementById('transactionsTable');
-            const rows = t.getElementsByTagName('tr');
-            for (let r of rows) {
+            const rows = document.querySelectorAll('#transactionsTable tr');
+            rows.forEach(r => {
+                if (r.querySelector('.empty-state-cell')) return;
                 if (!type) {
                     r.style.display = '';
-                    continue;
+                    return;
                 }
-                const cell = r.cells[2];
-                r.style.display = cell && cell.textContent.toLowerCase().includes(type) ? '' : 'none';
-            }
+                const c = r.cells[2];
+                if (!c) return;
+                r.style.display = c.textContent.toLowerCase().includes(type) ? '' : 'none';
+            });
         }
     </script>
 

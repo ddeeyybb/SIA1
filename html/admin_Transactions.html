@@ -6,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Transactions · Lab System</title>
 
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/admin_dashboard.css" />
+    <link rel="stylesheet" href="../css/admin_transactions.css" />
 </head>
 
 <body>
+    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo-row">
             <img src="../src/img/panda2.png" alt="P&A Logo" class="sidebar-logo" />
@@ -45,79 +50,95 @@
         </button>
     </aside>
 
+    <!-- MAIN PAGE -->
     <main class="main">
         <header class="topbar">
             <div>
                 <p class="eyebrow">P & A Lab</p>
-                <h1>Transaction Records</h1>
+                <h1>Transaction Management</h1>
             </div>
         </header>
 
-        <!-- Search + Filters -->
-        <div class="filters-row">
-            <input class="input search-input" placeholder="Search transactions..." />
-            <input type="date" class="input date-input">
-            <select class="input select-input">
-                <option value="all">All Types</option>
-                <option value="payment">Test Payment</option>
-                <option value="stock-in">Supply Purchase</option>
-                <option value="other">Others</option>
-            </select>
-        </div>
+        <div class="content-wrapper">
 
-        <!-- Summary Cards -->
-        <div class="stats-container">
-            <div class="stat-card">
-                <h3>Today's Transactions</h3>
-                <div class="value">0</div>
+            <!-- ===== STATS CARDS ===== -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-title"><i class="fa-solid fa-list-check"></i> Total Transactions</div>
+                    <div class="stat-value">0</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="stat-title"><i class="fa-solid fa-arrow-down"></i> Stock In Value</div>
+                    <div class="stat-value green">₱0.00</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="stat-title"><i class="fa-solid fa-arrow-up"></i> Stock Out Value</div>
+                    <div class="stat-value red">₱0.00</div>
+                </div>
+
+                <div class="stat-box">
+                    <div class="stat-title"><i class="fa-solid fa-scale-balanced"></i> Net Movement</div>
+                    <div class="stat-value red">₱0.00</div>
+                </div>
             </div>
-            <div class="stat-card">
-                <h3>This Week</h3>
-                <div class="value">0</div>
+
+            <!-- ===== FILTER BAR ===== -->
+            <div class="filter-bar">
+                <div class="filter-left">
+                    <input type="text" placeholder="Search by item, SKU, or transaction ID...">
+                </div>
+
+                <div class="filter-right">
+                    <select>
+                        <option>All Types</option>
+                        <option>Stock In</option>
+                        <option>Stock Out</option>
+                    </select>
+
+                    <select>
+                        <option>All Time</option>
+                        <option>Today</option>
+                        <option>This Week</option>
+                        <option>This Month</option>
+                    </select>
+
+                    <button class="export-btn">
+                        <i class="fa-solid fa-download"></i> Export
+                    </button>
+                </div>
             </div>
-            <div class="stat-card">
-                <h3>Total Revenue (Today)</h3>
-                <div class="value revenue">₱0</div>
+
+            <!-- ===== TABLE ===== -->
+            <div class="table-box">
+                <h2>Transaction History</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Date & Time</th>
+                            <th>Type</th>
+                            <th>Item Details</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Performed By</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td colspan="8" class="empty-message">
+                                <i class="fa-solid fa-circle-exclamation"></i> No transactions found
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+
         </div>
-
-        <!-- Table -->
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>TRANSACTION ID</th>
-                        <th>DATE & TIME</th>
-                        <th>TYPE</th>
-                        <th>DESCRIPTION</th>
-                        <th>AMOUNT</th>
-                        <th>STATUS</th>
-                        <th>ACTIONS</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>TX-001</td>
-                        <td>2025-01-15 10:24 AM</td>
-                        <td>Supply Purchase</td>
-                        <td>Test Tubes (Box of 50)</td>
-                        <td>₱250</td>
-                        <td>Completed</td>
-                        <td class="actions">
-                            <button class="action-btn"><i class="fa-solid fa-eye"></i></button>
-                        </td>
-                    </tr>
-
-                    <tr class="empty-state-row">
-                        <td colspan="7" class="empty-state">
-                            <i class="fa-solid fa-circle-exclamation"></i> No transactions found
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
     </main>
 </body>
 

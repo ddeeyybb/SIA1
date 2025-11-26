@@ -1,5 +1,3 @@
-/* ========== GLOBAL RESET ========== */
-
 * {
     margin: 0;
     padding: 0;
@@ -10,363 +8,293 @@
 body {
     display: flex;
     background: #f5f5f5;
+    /* Light gray background */
 }
 
 
-/* ========== SIDEBAR ========== */
+/* ========== SIDEBAR STYLES ========== */
 
 .sidebar {
     width: 250px;
     height: 100vh;
     background: #2a7abe;
+    /* Sidebar Background Blue */
     padding: 20px;
     position: fixed;
     transition: 0.3s ease;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.sidebar h2 {
-    color: #ffffff;
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 22px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+.logo-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
 }
 
-.user-info {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
+.sidebar-logo {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
 }
 
-.user-info p {
-    color: #ffffff;
-    font-weight: bold;
-    margin-bottom: 8px;
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.role-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.staff-badge {
-    background: #4CAF50;
-    color: #ffffff;
-}
-
-.sidebar .menu {
-    list-style: none;
-}
-
-.sidebar .menu li {
-    color: #b9c5c8;
-    padding: 12px 10px;
-    margin: 8px 0;
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
     border-radius: 6px;
-    cursor: pointer;
+    color: #b9c5c8;
+    text-decoration: none;
     transition: 0.3s;
 }
 
-.sidebar .menu li a {
-    width: 100%;
-    display: block;
-    color: inherit;
-    text-decoration: none;
-}
-
-.sidebar .menu li:hover,
-.sidebar .menu li.active {
+.nav-item:hover,
+.nav-item.active {
     background: #1e5a8a;
+    /* Darker blue for active/hover state */
     color: #ffffff;
 }
 
-.sidebar.collapsed {
-    width: 0;
-    padding: 0;
-    overflow: hidden;
+.logout-btn {
+    width: 100%;
+    background: #dc3545;
+    /* Red color for logout button */
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.logout-btn:hover {
+    background: #b02a37;
 }
 
 
-/* ========== MAIN CONTENT ========== */
+/* ========== MAIN CONTENT STYLES (Transaction Management Design & Spacing Fix) ========== */
 
 .main {
     margin-left: 250px;
     width: calc(100% - 250px);
     transition: 0.3s ease;
     min-height: 100vh;
-}
-
-.sidebar.collapsed+.main {
-    margin-left: 0;
-    width: 100%;
+    /* FIX: Increased padding for better top/side spacing */
+    padding: 30px;
 }
 
 
-/* ========== TOPBAR ========== */
+/* Header */
 
 .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #ffffff;
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding-bottom: 25px;
+    /* Added space below the header text */
 }
 
-.toggle-btn {
-    font-size: 22px;
-    background: none;
-    border: none;
-    cursor: pointer;
+.topbar .eyebrow {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 5px;
 }
 
-.logout-btn {
-    background: #dc3545;
-    color: #fff;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-
-/* ========== CONTENT ========== */
-
-.content {
-    padding: 20px;
-}
-
-
-/* ========== DASHBOARD CARDS ========== */
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    padding: 25px;
-    border-radius: 10px;
-    text-align: center;
-    color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-
-/* Blue */
-
-.card-blue {
-    background: linear-gradient(135deg, #2980b9, #3498db);
-}
-
-
-/* Green */
-
-.card-green {
-    background: linear-gradient(135deg, #27ae60, #2ecc71);
-}
-
-
-/* Red */
-
-.card-red {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-}
-
-
-/* Yellow */
-
-.card-yellow {
-    background: linear-gradient(135deg, #f1c40f, #f39c12);
-}
-
-.card h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.card p {
-    font-size: 32px;
+.topbar h1 {
+    font-size: 24px;
     font-weight: bold;
+    color: #333;
+}
+
+.section-block h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
 }
 
 
-/* ========== RESPONSIVE ========== */
+/* Stats Grid */
 
-@media (max-width: 600px) {
-    .cards {
-        grid-template-columns: 1fr;
-    }
+.stats-grid-large {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
 }
-
-.logo-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 20px 15px;
-}
-
-.sidebar-logo {
-    width: 200px;
-    height: 100px;
-    object-fit: contain;
-}
-
-.logo-text {
-    font-size: 15px;
-    font-weight: 700;
-    color: white;
-    /* adjust if your sidebar text color is different */
-}
-
-.stats-grid {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    /* allows wrapping on smaller screens */
-    margin-top: 20px;
-    justify-content: center;
-    /* center horizontally */
-    align-items: center;
-    /* center vertically if needed */
-}
-
-
-/* Individual card styles */
 
 .stat-card {
     background: #ffffff;
-    /* match main card style */
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    padding: 20px;
-    width: 220px;
-    /* adjust width as needed */
-    box-shadow: 0 12px 25px rgba(15, 23, 42, 0.08);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.stat-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
-}
-
-
-/* Icon container styling */
-
-.icon-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 12px;
-    font-size: 28px;
-    color: #2a7abe;
-    /* default icon color; override inline for alerts */
-}
-
-
-/* Title styling */
-
-.stat-title {
-    font-weight: 600;
+.stat-card h4 {
     font-size: 14px;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     color: #475569;
 }
 
+.stat-value-normal,
+.stat-value-green,
+.stat-value-red {
+    font-size: 18px;
+    font-weight: 600;
+}
 
-/* Value styling */
+.stat-value-green {
+    color: green;
+    /* Green for Stock In */
+}
 
-.stat-value {
-    font-size: 28px;
-    font-weight: 700;
-    color: #0f172a;
+.stat-value-red {
+    color: red;
+    /* Red for Stock Out */
 }
 
 
-/* Responsive tweaks */
+/* Filters and Search Bar */
 
-@media (max-width: 900px) {
-    .stats-grid {
-        justify-content: center;
-        gap: 15px;
-    }
-    .stat-card {
-        width: 45%;
-    }
-}
-
-@media (max-width: 600px) {
-    .stat-card {
-        width: 100%;
-    }
-}
-
-.btn {
-    display: inline-block;
-    padding: 8px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-.btn-primary {
-    background-color: #2a7abe;
-    color: #ffffff;
-}
-
-.btn-primary:hover {
-    background-color: #1e5a8a;
-}
-
-
-/* Center button inside table cell */
-
-.empty-state-cell {
-    text-align: center;
-    padding: 30px 0;
-}
-
-.action-buttons {
+.transaction-controls-bar {
     display: flex;
-    justify-content: center;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 0 20px 0;
 }
 
-.btn-icon {
-    padding: 6px 10px;
-    border: none;
-    background: #2a7abe;
-    color: #fff;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.2s;
+.search-box,
+.filter-input-small {
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    outline: none;
     font-size: 14px;
 }
 
-.btn-icon:hover {
-    background: #1d5582;
+.search-box {
+    flex: 1;
+    min-width: 250px;
+}
+
+.export-btn {
+    padding: 10px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #fff;
+    color: #334155;
+    font-size: 14px;
+}
+
+
+/* Table Design (Dark Blue Header) */
+
+.table-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #2a7abe;
+    /* Dark blue background */
+    color: #ffffff;
+    /* White text */
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: left;
+    padding: 12px 15px;
+}
+
+td {
+    text-align: left;
+    padding: 12px 15px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+
+/* Empty State */
+
+.empty-state-cell.no-transactions-found {
+    padding: 20px;
+    text-align: left;
+    color: #64748b;
+    font-size: 14px;
+}
+
+topbar {
+    width: 100%;
+    background: #ffffff;
+    padding: 20px 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Left Section: Eyebrow + Title */
+
+.topbar-left .eyebrow {
+    font-size: 13px;
+    color: #64748b;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+
+.topbar-left h1 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #1f2a37;
+}
+
+
+/* Right Section: User Icon */
+
+.topbar {
+    background: #ffffff;
+    padding: 25px 35px;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    margin-bottom: 25px;
+}
+
+
+/* Eyebrow text */
+
+.topbar .eyebrow {
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+
+/* Header title */
+
+.topbar h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1f2a37;
 }
